@@ -3,7 +3,7 @@ remote_theme: jacobtomlinson/carte-noire
 # Site settings
 title: "Honors Project Blog"
 email: cpickles98@gmail.com
-description: "A dark blog theme for Jekyll."
+description: "A blog for my honors project"
 baseurl: ""
 url: "https://connorpickles.github.io/HonorsProjectBlog/"
 title_description: "A blog that documents the journey of working on my honors project. The project is about using Unreal Engine to help determine viable sites for coastal kelp farms."
