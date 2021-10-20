@@ -21,9 +21,10 @@
 title: Honors Project Blog
 email: cpickles98@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  This blog contains details about work on my honors project.
+  The project is about using Unreal Engine to help determine viable sites
+  for coastal kelp farms. Each post describes a session of work, and helps document
+  any ideas and issues I had along the way.
 baseurl: "/HonorsProjectBlog" # the subpath of your site, e.g. /blog
 url: "https://connorpickles.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: connorpickles
