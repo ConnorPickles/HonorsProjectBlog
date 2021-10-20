@@ -27,7 +27,7 @@ url: "http://connorpickles.github.io" # the base hostname & protocol for your si
 github_username:  connorpickles
 
 # Build settings
-theme: pages-themes/midnight@v0.2.0
+theme: jekyll-theme-midnight
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
