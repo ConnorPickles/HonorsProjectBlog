@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "Hello, LiDAR World!"
+date:   2021-10-20 17:03:00 -0700
+categories: lidar ue4 lighting
+---
+## Getting Started
+
+Before I could start manipulating any actual data and making progress with the project, I had to familiarize myself with Unreal Engine. I have no prior experience with Unreal, so I was starting from the beginning. Fortunately, there is no shortage of tutorials for Unreal engine. I found one titled [Unreal Engine 4 C++ Tutorial](https://www.raywenderlich.com/185-unreal-engine-4-c-tutorial). Perfect, that won't take long at all! Except this tutorial assumes a base knowledge of Unreal Engine, and recommends completing a [10-part beginners series](https://www.raywenderlich.com/151018/unreal-engine-4-tutorial-beginners) first. Oh well.
+
+Completing these tutorials was rather uneventful, although there were some moments of "Oh wow, it's actually really simple to implement this, neat!" The way that C++ allows you to create and edit your own Blueprints is quite impressive. My only concern with these tutorials is that they were focused around game development, so some of the tools I learned about will almost certainly not be applicable for this project. Nevertheless, it was interesting to learn and even if a tool wasn't useful I was becoming more familiar with Unreal in general.
+
+
+## Adding LiDAR to Unreal Engine 4
+
+The process of adding LiDAR data to UE4 is actually rather simple; there is a plugin you can enable to handle LiDAR data. I simply chose an area from Hendersen Lake from my [data source](https://governmentofbc.maps.arcgis.com/apps/MapSeries/index.html?appid=d06b37979b0c4709b7fcf2a1ed458e03), downloaded it, and Unreal let me simply drag it from the Content Browser into the Viewport. This process did take a bit of time since the file was just over 2GB, but once it was in Unreal was able to handle everything rather smoothly. The tutorial I followed recommened I start a project with the ThirdPerson base, but being able to run around as a character within the LiDAR data isn't particularly useful and just added unnecessary complexity that I wound up removing after fiddling around for a while. In the future I won't create a project with the same defaults.
+
+By default, the LiDAR point cloud is just a collection of grey points in the world. There are a few different settings to change the color of the points: Data, Elevation, Position, and Classification. Data and classification both work by applying color that has been specified in the point cloud, either by rgb information for each point or by classification (tree, ground, water, etc.) for each point. Much to my dismay, the data I had contained neither of these, so the Data and Classificaiton options were of no use. Position colors points based on their coordinates, creating areas of similar color for points that are close together. Although it looks interesting, it's essentially a series of multi-colored splotches over the terrain. Not particularly useful. Elevation colors points just as you think it would, and while viewing the elevation is somewhat useful, I was hoping to make this data look more realistic than a red to green gradient. This problem was left unresolved for the time being.
+
+The problem I was more interested in solving was setting up realistic lighting. Unreal Engine provides a tool, Sun Position, that when combined with a Directional Light and Sky Sphere allows you to create lighting based on a provided latitiude and longitude. After a good amount of time reading documentation to find the exact combination of lighting objects and settings I needed, I was able to set up the game world with a realistic sun, including a slider that allows you to change the time of day. This was a big win, and this is where I stopped working for the day.
+
+![](images/initial_test_ue4.png)
+
+## Problems going forward
+
+Not long after this initial work, I had a meeting to check in about progress. I gave a demo about what I had done, and while doing so I kept noticing things I would have to fix. For example, the lighting is far from accurate for a couple of reasons. While the points in the point cloud **are** casting shadows, the hills never seems to cast a shadow on the lake. This is likely because there is no proper ground underneath, so the light always shines through. Somewhat related to this is the fact that it never really gets dark. In the image above the time is nearly 11pm, but it is still quite bright out. There are also patches on the lake where are no points for some reason. This is clearly problematic, but I'm not sure how to resolve this problem.
+
+During this meeting, the supervisor for this project (Derek) also mentioned that he would greatly prefer for me to work in Unreal Engine 5 instead of Unreal Engine 4. This is because UE5 allows you to import high quality, realistic textures that are [available for free](https://quixel.com/megascans/home/), which will aid in creating a realistic looking simulation. The main problem about swapping over to UE5 is that there is no LiDAR plugin that will allow me to easily import data. However the editing features of the UE4 plugin aren't particularly useful (no I would not like to load my entire 2GB dataset into RAM so I can edit indiviual points thank you very much), so as long as I can find a way to import the data to UE5 it is probably a better investment in the long run.
