@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Creating a Blog"
-date:   2021-10-20 17:03:00 -0700
+date:   2021-10-20 17:20:00 -0700
 categories: blog github-pages themes
 ---
 
