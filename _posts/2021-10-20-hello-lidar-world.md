@@ -19,7 +19,7 @@ By default, the LiDAR point cloud is just a collection of grey points in the wor
 
 The problem I was more interested in solving was setting up realistic lighting. Unreal Engine provides a tool, Sun Position, that when combined with a Directional Light and Sky Sphere allows you to create lighting based on a provided latitiude and longitude. After a good amount of time reading documentation to find the exact combination of lighting objects and settings I needed, I was able to set up the game world with a realistic sun, including a slider that allows you to change the time of day. This was a big win, and this is where I stopped working for the day.
 
-![First test of LiDAR data in UE4](../../../images/initial_test_ue4.png)
+![First test of LiDAR data in UE4](../../../../images/initial_test_ue4.png)
 
 ## Problems going forward
 
