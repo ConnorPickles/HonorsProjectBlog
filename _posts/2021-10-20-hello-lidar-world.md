@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Hello, LiDAR World!"
-date:   2021-10-20 17:03:00 -0700
+date:   2021-10-20 17:03:00 -0800
 categories: lidar ue4 lighting
 ---
 ## Getting Started
