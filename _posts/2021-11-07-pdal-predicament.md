@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Pdal Predicament"
+date:   2021-11-07 10:40:00 -0800
+categories: ue5 c++ pdal
+---
+
+## Creating a Custom C++ Class (Part 2/2)
+
+Last time I worked on this project, I was attempting to instantiate my own C++ object. Luckily, I was quickly able to do this after realizing that last time I was trying to instantiate the C++ class instead of the blueprint class that contained the event graph I had set up to actually call my C++ function. Well, this was after loading up Visual Studio to find my code had disappeared, only to reload Unreal and VS to find it there again. Not sure what happened or how it got fixed, but I'm not complaining. I did decide to abandon the UObject parent and swap to AActor, because I wanted my class to exist on it's own without having to be created within another class. Maybe there is a way to create a UObject without it being a variable within another class, but for now I'm just adding the blueprint version of my class to the scene so it's loaded when the game starts. This approach will probably need to be changed further, since I will probably want to add elements to the scene before the game is run. Something like a subsystem might make more sense for this structurally, but I'd rather have some actual functionality before I start fussing over organiziation too much.
+
+## Using the PDAL Library
+
+I charged ahead with attempting to load LiDAR data using the PDAL library I had found previously. The documentation for this library isn't particularly good, especially for someone who is still learning C++. They provide an [extremely sparse API](https://pdal.io/api/cpp/index.html), and otherwise direct you to the source code of their unit tests. I headed there, using [this test](https://github.com/PDAL/PDAL/blob/master/test/unit/LazPerfTest.cpp) as a guideline.
+
+First, I had to actually download and include the library in my project. This was fairly simple; it involves adding a new directory to the list of places that VS looks for header files, and placing the extracted pdal library into that new folder. I then copied the first few lines of one of the tests, up until the point where it loaded the data. I then attempted to print some information from this data. This is where I discovered that [C++ makes life a tad difficult when it comes to formatting strings](https://stackoverflow.com/questions/2342162/stdstring-formatting-like-sprintf#comment47071301_2342176_). I messed around with setting up a function like this for my class, and the `UE_LOG` function kept complaining that "The formatted string must be a TCHAR array". For the first time in a while, I decided to actually build my solution and see what errors came up, as I've been finding that VS can take quite a while to update any error messages after the code has been changed (I miss VSCode).
+
+Unfortunately, things take a turn for the worse here. When I compiled my code, I noticed that one of the errors was coming from pdal itself, and there was only one error (trying to include a file that doesn't exist). I double checked the library, and couldn't find a copy of the file anywhere, which made me think that the library itself had an issue. I tried downloading an older version of the library, and was getting compile errors with that one as well. Visual Studio came up with an option to "install using vcpkg" at one point, so I figured I would try to install using that instead, as it's quite probable that I simply installed the library incorrectly. Installing vcpkg wasn't difficult, however the pdal installation has been running for over an hour and has still not completed. I'm going to leave it running in the hopes that it will eventually install.
